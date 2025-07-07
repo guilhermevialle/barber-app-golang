@@ -28,23 +28,23 @@ func NewAppointmentService(
 	}
 }
 
-func (as *AppointmentService) Schedule(BarberID, CustomerID, OfferingID string, startAt time.Time) (*entities.Appointment, error) {
-	offeringExists := as.offeringRepo.FindById(OfferingID)
+func (as *AppointmentService) Schedule(barberID, customerID, offeringID string, startAt time.Time) (*entities.Appointment, error) {
+	offeringExists := as.offeringRepo.FindById(offeringID)
 	if offeringExists == nil {
 		return nil, errors.New("offering does not exist")
 	}
 
-	barberExists := as.userRepo.FindByRoleAndID("barber", BarberID)
+	barberExists := as.userRepo.FindByRoleAndID("barber", barberID)
 	if barberExists == nil {
 		return nil, errors.New("barber does not exist")
 	}
 
-	customerExists := as.userRepo.FindByRoleAndID("customer", CustomerID)
+	customerExists := as.userRepo.FindByRoleAndID("customer", customerID)
 	if customerExists == nil {
 		return nil, errors.New("customer does not exist")
 	}
 
-	appointment, err := entities.NewAppointment(BarberID, CustomerID, OfferingID, startAt)
+	appointment, err := entities.NewAppointment(barberID, customerID, offeringID, startAt, offeringExists.Duration)
 	if err != nil {
 		return nil, err
 	}

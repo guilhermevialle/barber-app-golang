@@ -13,9 +13,10 @@ type Appointment struct {
 	CustomerID string
 	OfferingID string
 	StartAt    time.Time
+	Duration   time.Duration // minutes
 }
 
-func NewAppointment(BarberID, CustomerID, OfferingID string, startAt time.Time) (*Appointment, error) {
+func NewAppointment(barberID, customerID, offeringID string, startAt time.Time, duration time.Duration) (*Appointment, error) {
 	id, err := nanoid.New(21)
 	if err != nil {
 		return nil, errors.New("failed to generate appointment id")
@@ -23,9 +24,18 @@ func NewAppointment(BarberID, CustomerID, OfferingID string, startAt time.Time) 
 
 	return &Appointment{
 		ID:         id,
-		BarberID:   BarberID,
-		CustomerID: CustomerID,
-		OfferingID: OfferingID,
+		BarberID:   barberID,
+		CustomerID: customerID,
+		OfferingID: offeringID,
 		StartAt:    startAt,
+		Duration:   duration,
 	}, nil
+}
+
+func (a *Appointment) EndAt() time.Time {
+	return a.StartAt.Add(a.Duration * time.Minute)
+}
+
+func (a *Appointment) DurationInMinutes() int {
+	return int(a.Duration.Minutes())
 }
