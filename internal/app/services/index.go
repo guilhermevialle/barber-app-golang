@@ -10,5 +10,5 @@ type IUserService interface {
 }
 
 type IAppointmentService interface {
-	Schedule(BarberID, CustomerID string, startAt time.Time) (*entities.Appointment, error)
+	Schedule(BarberID, CustomerID, OfferingID string, startAt time.Time) (*entities.Appointment, error)
 }

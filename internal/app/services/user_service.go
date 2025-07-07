@@ -10,6 +10,7 @@ type UserService struct {
 	repo repositories.IUserRepository
 }
 
+// implements IUserService
 var _ IUserService = (*UserService)(nil)
 
 func NewUserService(repo repositories.IUserRepository) *UserService {

@@ -13,7 +13,8 @@ POST  http://localhost:8080/appointment/schedule
 Content-Type: application/json
 
 {
-  "barber_id": "barber_id",
-  "customer_id": "customer_id",
+  "barber_id": "barber-1",
+  "offering_id": "offering-1",
+  "customer_id": "customer-1",
   "start_at": "2025-07-07T13:30:00-03:00"
 }

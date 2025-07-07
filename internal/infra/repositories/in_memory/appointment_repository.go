@@ -17,6 +17,6 @@ func NewAppointmentRepository() *AppointmentRepository {
 	}
 }
 
-func (ar *AppointmentRepository) Schedule(appointment *entities.Appointment) {
+func (ar *AppointmentRepository) Save(appointment *entities.Appointment) {
 	ar.appointments = append(ar.appointments, appointment)
 }

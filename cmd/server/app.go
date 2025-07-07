@@ -9,12 +9,10 @@ import (
 
 func NewApp() *gin.Engine {
 	r := gin.Default()
+	di := di.NewDIBootstrap()
 
-	userController := di.NewUserDI()
-	appointmentController := di.NewAppointmentDI()
-
-	routes.RegisterUserRoutes(r, userController)
-	routes.RegisterAppointmentRoutes(r, appointmentController)
+	routes.RegisterUserRoutes(r, di.UserController)
+	routes.RegisterAppointmentRoutes(r, di.AppointmentController)
 
 	return r
 }

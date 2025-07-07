@@ -34,7 +34,7 @@ func (ac *AppointmentController) ScheduleAppointment(ctx *gin.Context) {
 		return
 	}
 
-	appointment, err := ac.service.Schedule(req.BarberID, req.CustomerID, startAt)
+	appointment, err := ac.service.Schedule(req.BarberID, req.CustomerID, req.OfferingID, startAt)
 	if err != nil {
 		ctx.JSON(400, err.Error())
 		return

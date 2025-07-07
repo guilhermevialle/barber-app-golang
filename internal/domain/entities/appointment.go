@@ -11,10 +11,11 @@ type Appointment struct {
 	ID         string
 	BarberID   string
 	CustomerID string
+	OfferingID string
 	StartAt    time.Time
 }
 
-func NewAppointment(BarberID, CustomerID string, startAt time.Time) (*Appointment, error) {
+func NewAppointment(BarberID, CustomerID, OfferingID string, startAt time.Time) (*Appointment, error) {
 	id, err := nanoid.New(21)
 	if err != nil {
 		return nil, errors.New("failed to generate appointment id")
@@ -24,6 +25,7 @@ func NewAppointment(BarberID, CustomerID string, startAt time.Time) (*Appointmen
 		ID:         id,
 		BarberID:   BarberID,
 		CustomerID: CustomerID,
+		OfferingID: OfferingID,
 		StartAt:    startAt,
 	}, nil
 }
