@@ -1,0 +1,19 @@
+POST http://localhost:8080/user/register
+Content-Type: application/json
+
+{
+  "name": "gui",
+  "email": "gui@gmail.com",
+  "password": "gui123",
+  "role": "customer"
+}
+###
+
+POST  http://localhost:8080/appointment/schedule
+Content-Type: application/json
+
+{
+  "barber_id": "barber_id",
+  "customer_id": "customer_id",
+  "start_at": "2025-07-07T13:30:00-03:00"
+}
